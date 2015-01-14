@@ -1,0 +1,224 @@
+############################################################################
+#
+# IBM Operations Analytics - Predictive Insights GROK Patterns
+#
+############################################################################
+# v1	 Doug McClure	12-18-14 : Initial patterns for the following SCAPI v1.3 Logs 
+#
+# TODO:
+# Add Streams, DB2, Netcool/OMNIbus, TIP/DASH, etc. logs
+#
+############################################################################
+
+#GrangerDetectionscapiFw_log_AlarmFilter.log
+#2014-10-15 16:24:26,537 INFO  [ConnectionPool]  CP_NEW_POOL[,jdbc:db2://foobar.ibmservicengage.com:50000/SCAPIDB,null]
+
+#GrangerDetectionscapiFw_log_AlarmProcessor.log
+#2014-10-15 16:24:25,368 INFO  [AlarmProcessorUdop]  INF_OP_INIT_STARTED[,com.ibm.tivoli.netcool.pa.spade.alarming.AlarmProcessorUdop]
+
+#GrangerDetectionscapiFw_log_Distiller.log
+#2014-10-15 16:24:26,743 INFO  [DistillerOperator]  INF_OP_INIT_FINISHED
+
+#GrangerDetectionscapiFw_log_EventForwarder.log
+#2014-10-15 16:24:25,638 INFO  [EventForwarderUdop]  INF_OP_INIT_STARTED[,com.ibm.tivoli.netcool.pa.spade.alarming.EventForwarderUdop]
+
+#GrangerDetectionscapiFw_log_Normalizer.log
+#2014-10-15 16:24:26,561 INFO  [NormalizerOperator]  INF_OP_INIT_STARTED
+
+#GrangerDetectionscapiFw_log_OmnibusConfigurator.log
+#2014-10-15 16:24:24,836 INFO  [OmnibusConfiguratorUdop]  INF_OP_INIT_STARTED[,com.ibm.tivoli.netcool.pa.spade.alarming.OmnibusConfiguratorUdop]
+
+#GrangerDetectionscapiFw_log_SelfMonitor.log
+#2014-10-15 16:24:26,551 INFO  [SelfMonitorOperator]  INF_OP_INIT_FINISHED
+
+#GrangerDetectionscapiFw_Sink_FilteredAlarmStreamSink.log
+# sample log empty
+
+#GrangerDetectionscapiFw_Sink_NormalizedDataStreamSink.log
+# multiple patterns
+
+#Types of Log Message Patterns in GrangerDetectionscapiFw_Sink_NormalizedDataStreamSink.log
+#############################################################################################
+
+# Pattern 1
+#-23,,,[],[Type,Manager,Summary,Class,Agent,TASPAnomalyTimestamp,TASPMetricResourceNameList,TASPCorrelationId,NodeAlias,FirstOccurrence,TASPUpdateTime,TASPTopic,Identifier,AlertKey,Node,Severity,LastOccurrence],[13,TASP,Topic Data Source started for topic: scapi, ready to start data loading,89370,IBM Tivoli,1413408284,,-3,scapi/scapi,1413408284,1413408284,scapi,STATUS/scapi/scapi/ExtractorStarted,STATUS/scapi/scapi/ExtractorStarted,scapi/scapi,5,1413408284]
+
+# Pattern 2
+#-24,,,[],[$TSAA::ConsName,$TSAA::ProdName,$TSAA::TopicNames,$TSAA::Timestamp],[scapi,TaspDataLoader,scapi,1413408344124]
+
+# Pattern 3
+#-19,,,[],[$TSAA::TopicNames,$TSAA::InstName,$TSAA::TopicNames,$TSAA::StartTime,$TSAA::Latency,$TSAA::InstName,$TSAA::EndTime,$TSAA::ConsName,$TSAA::ExtractionMode],[scapi,TopicDataSourcescapi,scapi,1411016400000,5,TopicDataSourcescapi,1413262800000,APPLY_TO_ALL,EXTRACT]
+
+# Pattern 4
+#-22,,,[],[$TSAA::SOP,$TSAA::TopicNames,$TSAA::ClassName,$TSAA::RowsProcessed,$TSAA::GroupName,$TSAA::IsInBacklog,$TSAA::LastInterval,$TSAA::LastIntervalWithData],[1411016400000,scapi,FileSourceReader,0,FullhostsnetGroup,true,(2014-09-18 05:00:00 - 2014-09-18 05:05:00),(1970-01-01 00:00:00 - 1970-01-01 00:00:00)]
+
+# Pattern 5
+#-22,,,[],[$TSAA::SOP,$TSAA::TopicNames,$TSAA::ClassName,$TSAA::RowsProcessed,$TSAA::LastInterval,$TSAA::QueueSize],[1411020000000,scapi,Merge,5138,(2014-09-18 06:00:00 - 2014-09-18 06:05:00),1]
+
+# Pattern 6
+#-22,,,[],[$TSAA::SOP,$TSAA::TopicNames,$TSAA::ClassName,$TSAA::DataAvailabilityAlarmsSent,$TSAA::MaxNumberOfKpis,$TSAA::NumberOfKpis,$TSAA::MetricsNoLongerAnalyzed,$TSAA::NumberOfResources],[1411020000000,scapi,DataAvailabilityProcessor,0,31771,31771,0,729]
+
+#GrangerDetectionscapiFw_Sink_OutputAlgoStreamSink.log
+# sample log empty
+
+#GrangerDetectionscapiFw_Sink_SelfMonitorStreamSink.log
+# sample log empty
+
+#GrangerDetectionscapiFw_Sink_UnifiedAlarmOutputSink.log
+# sample log empty
+
+#GrangerDetectionscapiFw_stat.log
+
+#Read Pattern
+#2014-10-15 16:27:41,281  [Read] Group :  FullhostsnetGroup; Interval :  (2014-09-18 05:00:00 - 2014-09-18 05:05:00); No Of Rows:  0
+#Merge Pattern
+#2014-10-15 16:27:55,286  [Merge] Interval :  (2014-09-18 06:00:00 - 2014-09-18 06:05:00); No Of Rows :  5138; Queue Size:  1
+#Overall Pattern
+#2014-10-15 16:27:55,300  [Overall] Intervals In:  1; Data Intervals In:  1; Intervals Out:   0; Latency:  1
+#DataAvail Pattern
+#2014-10-15 16:28:06,317  [DataAvail] Resources :  730; Kpis :  31760; Of Max :  31771; No Longer Analyzed:  0; Alarms sent:  0
+
+#exec_runner.log
+#[Wed Oct 15 19:48:59 CDT 2014]  exec result code: 0 
+#[Wed Oct 15 19:48:59 CDT 2014]  exec result msg: Built 6849 models in 3082.985371 (secs) at rate of 0.450137 (per sec) 
+
+#GrangerDetectionscapi_log_GrangerEvaluateWrapper.log
+#2014-10-15 16:24:10,563 INFO  [GrangerEvaluateWrapper]  INF_MV_INITSTATE
+
+#GrangerDetectionscapi_log_GrangerTrainWrapper.log
+#2014-10-16 07:00:17,416 INFO  [ModelDetailsLogger]  INFO_MISS_DATA[,foobar.foobar.com:1269735:cdtwvdi5717 GuestscpuGroup Ready,0.2]
+
+#GrangerDetectionscapi_log_GraphPersistencyOrchestrator.log
+2014-10-15 16:24:10,476 INFO  [GraphPersistencyOrchestratorOperator]  INF_OP_INIT_STARTED
+
+#GrangerDetectionscapi_log_IncrementalStreamlationPivot.log
+#2014-10-15 16:24:10,236 INFO  [IncrementalStreamlationPivotOperator]  Starting tuple consumer thread for port wrapper on 0
+
+#GrangerDetectionscapi_trace_GrangerEvaluateWrapper.log
+# sample log empty
+
+#GrangerDetectionscapi_trace_GrangerTrainWrapper.log
+#2014-10-15 20:09:33,235 INFO  [RuntimeCmdExec]  EXEC_RUNNING[,/bin/sh -c ps -ef | grep "exec_runner.*GrangerDetectionscapi" | grep -v 'grep' | awk '{print $2}' ]
+
+#GrangerDetectionscapi_trace_GraphPersistencyOrchestrator.log
+# sample log empty
+
+#GrangerDetectionscapi_trace_IncrementalStreamlationPivot.log
+# sample log empty
+
+#TopicDataSourcescapi_log_DataSource.log
+# multiple patterns
+
+
+
+#############################################################################
+#
+# GROK Patterns
+# 
+#############################################################################
+
+#Common Format found in PI Logs
+PIPATTERN1 (?m)%{PITIMESTAMP:Timestamp}\s+%{PILOGLEVEL}\s+%{PIPROCESS}\s*%{PILOGMESSAGE}
+
+PITIMESTAMP %{YEAR}-%{MONTHNUM}-%{MONTHDAY} %{HOUR}:?%{MINUTE}(?::?%{SECOND})
+PILOGLEVEL %{LOGLEVEL:LogLevel}
+PIPROCESS \[%{DATA:Process}\]
+PILOGMESSAGE %{GREEDYDATA:LogMessage}
+
+###########################################################################
+# Patterns from GrangerDetectionscapiFw_Sink_NormalizedDataStreamSink.log #
+###########################################################################
+
+# Generalized Pattern 1 - unfort, the Values block has commas within field values breaking CSV parsing
+PATTERN1 (?m)%{INT},,,\[\],\[%{DATA:Header}\],\[%{DATA:Values}\]
+
+# Pattern 2
+PATTERN2 (?m)%{INT},,,\[\],\[%{DATA:Header}\],\[%{DATA:ConsName},%{DATA:ProdName},%{DATA:TopicName},%{DATA:Timestamp}\]
+
+# Pattern 3
+PATTERN3 (?m)%{INT},,,\[\],\[%{DATA:Header}\],\[%{DATA:TopicNames},%{DATA:InstName},%{DATA:TopicNames2},%{DATA:StartTime},%{DATA:Latency},%{DATA:InstName2},%{DATA:EndTime},%{DATA:ConsName},%{DATA:ExtractionNode}\]
+
+# Pattern 4
+PATTERN4 (?m)%{INT},,,\[\],\[%{DATA:Header}\],\[%{DATA:SOP},%{DATA:TopicNames},%{DATA:ClassName},%{DATA:RowsProcessed},%{DATA:GroupName},%{DATA:IsInBacklog},%{DATA:LastInterval},%{DATA:LastIntervalWithData}\]
+
+# Pattern 5
+PATTERN5 (?m)%{INT},,,\[\],\[%{DATA:Header}\],\[%{DATA:SOP},%{DATA:TopicNames},%{DATA:ClassName},%{DATA:RowsProcessed},%{DATA:LastInterval},%{DATA:QueueSize}\]
+
+# Pattern 6
+PATTERN6 (?m)%{INT},,,\[\],\[%{DATA:Header}\],\[%{DATA:SOP},%{DATA:TopicNames},%{DATA:ClassName},%{DATA:DataAvailabilityAlarmsSent},%{DATA:MaxNumberOfKpis},%{DATA:NumberOfKpis},%{DATA:MetricsNoLongerAnalyzed},%{DATA:NumberOfResources}\]
+
+##################################################
+# Patterns from GrangerDetectionscapiFw_stat.log #
+##################################################
+
+#Read Pattern
+READ (?m)%{PITIMESTAMP:Timestamp}\s+%{PIPROCESS}\s+Group :\s+%{DATA:Group};\s+Interval :\s+%{DATA:Interval};\s+No Of Rows:\s+%{NUMBER:NumberOfRows}
+
+#Merge Pattern
+MERGE (?m)%{PITIMESTAMP:Timestamp}\s+%{PIPROCESS}\s+Interval :\s+%{DATA:Interval};\s+No Of Rows :\s+%{NUMBER:NumberOfRows};\s+Queue Size:\s+%{NUMBER:QueueSize}
+
+#Overall Pattern
+OVERALL (?m)%{PITIMESTAMP:Timestamp}\s+%{PIPROCESS}\s+Intervals In:\s+%{NUMBER:IntervalsIn};\s+Data Intervals In:\s+%{NUMBER:DataIntervalsIn};\s+Intervals Out:\s+%{NUMBER:IntervalsOut};\s+Latency:\s+%{NUMBER:Latency}
+
+#DataAvail Pattern
+DATAAVAIL (?m)%{PITIMESTAMP:Timestamp}\s+%{PIPROCESS}\s+Resources :\s+%{NUMBER:Resources};\s+Kpis :\s+%{NUMBER:KPIs};\s+Of Max :\s+%{NUMBER:OfMaxKPIs};\s+No Longer Analyzed:\s+%{NUMBER:NoLongerAnalyzed};\s+Alarms sent:\s+%{NUMBER:AlarmsSent}
+
+###################################################################
+# Patterns from GrangerDetectionscapi_log_GrangerTrainWrapper.log #
+###################################################################
+
+#Generic Patterns until more details are known
+
+#INFO_MISS_DATA
+INFOMISSDATA (?m)%{PITIMESTAMP:Timestamp}\s+%{PILOGLEVEL}\s+%{PIPROCESS}\s+%{DATA}\[%{GREEDYDATA:LogMessage}
+
+#INFO_LOW_VARIANCE
+INFOLOWVARIANCE (?m)%{PITIMESTAMP:Timestamp}\s+%{PILOGLEVEL}\s+%{PIPROCESS}\s+%{DATA}\[%{GREEDYDATA:LogMessage}
+
+
+###################################################################
+# Patterns from GrangerDetectionscapi_log_GrangerTrainWrapper.log #
+###################################################################
+
+PIMODEL (?m)%{PITIMESTAMP}\s+%{PILOGLEVEL}\s+%{PIPROCESS}\s+%{DATA:PIType}\[%{DATA},%{DATA:KPIName},%{DATA:Threshold}\]
+
+#########################################################
+# Patterns from TopicDataSourcescapi_log_DataSource.log #
+#########################################################
+
+#Generic Patterns until more details are known
+
+TOPICGENERAL (?m)%{PITIMESTAMP:Timestamp}\s+%{PILOGLEVEL}\s+%{PIPROCESS}\s+%{DATA}\[%{GREEDYDATA:LogMessage}
+TOPICDATAAVAIL (?m)%{PITIMESTAMP:Timestamp}\s+%{PILOGLEVEL}\s+%{PIPROCESS}\s+%{GREEDYDATA:LogMessage}
+
+
+#Other "types" of logs in this:
+
+#[ConnectionPool]
+#--CP_NEW_POOL
+#--CP_NEW_CONNECTION
+#--
+#[DataSourceOperator]
+#[FileDispatcher]
+#[TaspDataLoader]
+#[IntervalBasedJobRunner]
+#--INFO_CRON_CONFIG
+#[CtrlTupleExtractor]
+#--MEDIATION_START_TIME
+#--MEDIATION_INTERVAL_MILLIS
+#--MEDIATION_EXTRACT_QUEUE
+#--MEDIATION_TIMEOUT_INTERVAL
+#[PersistableDao]
+#--PART_CONFIG
+#--PART_CACHE
+#--PART_MAN
+#--PART_ADDEDD
+#--PART_ADDING
+#[FileSourceReader]
+#--READ_FILE
+#[FullChainExtractor]
+#[Merge]
+#--MERGE_WAITING
+#--MERGE_DELIVERED
+#[EmptyAggregatorByTime]
+#

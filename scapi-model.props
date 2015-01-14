@@ -1,0 +1,74 @@
+[SCALA_server]
+scalaHome: /opt/scala/driver
+
+[DSV_file]
+delimiter: ,
+totalColumns: 6
+aqlModuleName: scapiModel
+version: 1.0.0.0
+
+[field0_indexConfig]
+name: logRecord
+dataType: TEXT
+retrievable: true
+retrieveByDefault: true
+sortable: true
+filterable: true
+searchable: true
+path_1: content.text
+combine: FIRST
+
+[field1_indexConfig]
+name: timestamp
+dataType: DATE
+dateFormat: yyyy-MM-dd'T'HH:mm:ss.SSSX
+retrievable: true
+retrieveByDefault: true
+sortable: true
+filterable: true
+searchable: true
+
+[field2_indexConfig]
+name: LogLevel
+dataType: TEXT
+retrievable: true
+retrieveByDefault: true
+sortable: true
+filterable: true
+searchable: true
+
+[field3_indexConfig]
+name: Process
+dataType: TEXT
+retrievable: true
+retrieveByDefault: true
+sortable: true
+filterable: true
+searchable: true
+
+[field4_indexConfig]
+name: PIType
+dataType: TEXT
+retrievable: true
+retrieveByDefault: true
+sortable: true
+filterable: true
+searchable: true
+
+[field5_indexConfig]
+name: KPIName
+dataType: TEXT
+retrievable: true
+retrieveByDefault: true
+sortable: true
+filterable: true
+searchable: true
+
+[field6_indexConfig]
+name: Threshold
+dataType: TEXT
+retrievable: true
+retrieveByDefault: true
+sortable: false
+filterable: false
+searchable: true

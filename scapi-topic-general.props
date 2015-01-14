@@ -1,0 +1,56 @@
+[SCALA_server]
+scalaHome: /opt/scala/driver
+
+[DSV_file]
+delimiter: ,
+totalColumns: 4
+aqlModuleName: scapiTopicGeneral
+version: 1.0.0.0
+
+[field0_indexConfig]
+name: logRecord
+dataType: TEXT
+retrievable: true
+retrieveByDefault: true
+sortable: false
+filterable: false
+searchable: true
+path_1: content.text
+combine: FIRST
+
+[field1_indexConfig]
+name: timestamp
+dataType: DATE
+dateFormat: yyyy-MM-dd'T'HH:mm:ss.SSSX
+retrievable: true
+retrieveByDefault: true
+sortable: true
+filterable: true
+searchable: true
+
+[field2_indexConfig]
+name: LogLevel
+dataType: TEXT
+retrievable: true
+retrieveByDefault: true
+sortable: true
+filterable: true
+searchable: true
+
+[field3_indexConfig]
+name: Process
+dataType: TEXT
+retrievable: true
+retrieveByDefault: true
+sortable: true
+filterable: true
+searchable: true
+
+[field4_indexConfig]
+name: LogMessage
+dataType: TEXT
+retrievable: true
+retrieveByDefault: true
+sortable: false
+filterable: false
+searchable: true
