@@ -8,10 +8,10 @@ This is a cookbook for creating your own content packs for managing the health a
 
 1. A sample logstash configuration **(scapi-health-performance-logstash.conf)** to parse and annotate the following SCAPI 1.3 log files in detail: 
 
-	type => "SCAPI-TOPIC-DS" 	: TopicDataSourcescapi_log_DataSource.log
-	type => "SCAPI-STAT" 		: GrangerDetectionscapiFw_stat.log
-	type => "SCAPI-MODEL" 		: GrangerDetectionscapi_log_GrangerTrainWrapper.log
-	type => "SCAPI-BULK"		: All other SCAPI logs are parsed in a more generic manner. (there are A LOT of SCAPI logs!)
+	- type => "SCAPI-TOPIC-DS" 	: TopicDataSourcescapi_log_DataSource.log
+	- type => "SCAPI-STAT" 		: GrangerDetectionscapiFw_stat.log
+	- type => "SCAPI-MODEL" 	: GrangerDetectionscapi_log_GrangerTrainWrapper.log
+	- type => "SCAPI-BULK"		: All other SCAPI logs are parsed in a more generic manner. (there are A LOT of SCAPI logs!)
 	
 	From the SCAPI-STAT log type, four additional outputs are derived for READ, MERGE, OVERALL and DATAAVAIL messages.
 	
